@@ -1,1 +1,39 @@
-<h1>Test Github pages</h1>
+<ng-container *ngIf="phase === 'PlayerSelection'">
+    <table>
+        <thead>
+            <tr>
+                <th>Giocatori</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players; let playerIndex = index">
+                <ng-container *ngIf="!player.alwaysPresent">
+                    <td [style.color]="player.color" [style.backgroundColor]="player.backgroundColor"
+                        (click)="togglePlayer(playerIndex)">{{ player.name }}
+                        <ng-container *ngIf="player.selected">✅</ng-container>
+                    </td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="goToGame()">Procedi</button>
+</ng-container>
+<ng-container *ngIf="phase === 'Game'">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th *ngFor="let player of selectedPlayers" [style.color]="player.color"
+                    [style.backgroundColor]="player.backgroundColor">{{ player.name }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of rows; let rowIndex = index">
+                <td [style.backgroundColor]="row.backgroundColor">{{ row.name }}</td>
+                <td *ngFor="let col of selectedPlayers; let colIndex = index" (click)="toggleCell(rowIndex, colIndex)">
+                    {{ grid[rowIndex][colIndex] }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

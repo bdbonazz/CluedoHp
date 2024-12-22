@@ -10,3 +10,19 @@ header {
 .content {
   padding: var(--content-padding);
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+th {
+  background-color: #f2f2f2;
+}
